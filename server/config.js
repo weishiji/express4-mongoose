@@ -12,4 +12,4 @@ var _User = new Schema({
 	,'name' : String
 	,'password' : String
 },{collection:'user'})
-exports.User = mongoose.model('user',_User)
+exports.User = mongoose.model('User',_User)
