@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
-console.log(express)
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+	var user = req.db.User
+	user.find(function(err,doc){
+		console.log(doc,'doc')
+	})
+	res.render('index', { title: 'Express' });
 });
 
 module.exports = router;

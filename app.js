@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var mongoose = require('mongoose')
+
+var db = require('./server/config')
 
 var app = express();
 
@@ -22,6 +23,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Make our bd accessible to our router
+app.use(function(req,res,next){
+	req.db = db;
+	next();
+})
 
 app.use('/', routes);
 app.use('/users', users);
