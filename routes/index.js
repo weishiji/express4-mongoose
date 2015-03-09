@@ -16,7 +16,7 @@ router.post('/user',function(req,res){
 		,password : req.body.password || ''
 	})
 	user.save()
-	res.send('usccess')
+	res.send('success')
 })
 
 module.exports = router;
