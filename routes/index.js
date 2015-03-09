@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
 });
 
-/*router.post('/user',function(req,res){
+router.post('/user',function(req,res){
 	var user = new req.db.User({
 		email : req.body.email || ''
 		,name : req.body.name || ''
@@ -18,5 +18,5 @@ router.get('/', function(req, res, next) {
 	user.save()
 	res.send('usccess')
 })
-*/
+
 module.exports = router;
