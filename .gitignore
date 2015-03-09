@@ -12,3 +12,6 @@ ek
 *.ipr
 *.iws
 *.imle
+#npm
+node_modules
+npm-debug.log
