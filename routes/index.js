@@ -8,7 +8,9 @@ router.get('/', function(req, res, next) {
 	})
 	res.render('index', { title: 'Express' });
 });
-
+router.get('/login',function(req,res,next){
+    res.render('login',{title : 'Login'})
+})
 router.post('/user',function(req,res){
 	var user = new req.db.User({
 		email : req.body.email || ''
