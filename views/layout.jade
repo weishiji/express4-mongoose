@@ -9,7 +9,9 @@ html
     script(type='text/javascript',src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
     script(type='text/javascript',src='/javascripts/main.js')
   body
-    include _header
-    div.container
+    block header
+      include _header
+    div#wrap
       block content
-    include _footer
+    block footer
+      include _footer
