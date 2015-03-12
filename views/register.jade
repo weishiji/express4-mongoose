@@ -4,18 +4,18 @@ block header
 
 block content
   div.container
-    form.form-horizontal(onsubmit='return false;')
+    form.form-horizontal#register-form(onsubmit='return false;')
       .form-group.has-feedback
         .col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
-          input#login-user.form-control.border-line(type='text', placeholder='请输入邮箱')
+          input#register-user.form-control.border-line(type='text',name='username',placeholder='用户名')
           span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden='true')
       .form-group.has-feedback
         .col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
-          input.form-control.border-line(type='text', placeholder='请输入密码')
+          input.form-control.border-line(type='text',name='password',placeholder='请输入密码')
           span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden='true')
       .form-group.has-feedback
         .col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
-          input.form-control.border-line(type='text', placeholder='确认密码')
+          input.form-control.border-line(type='text',placeholder='确认密码')
           span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden='true')
       .form-group
         .col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3

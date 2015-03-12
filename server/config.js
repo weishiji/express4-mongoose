@@ -8,8 +8,7 @@ var db = mongoose.connection;
 db.on('error',console.error.bind(console,'connection error:'))
 
 var _User = new Schema({
-	'email' : {type : String,unique : true, index : true}
-	,'name' : String
+	'username' : {type : String,unique : true, index : true}
 	,'password' : String
 },{collection:'user'})
 
