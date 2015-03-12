@@ -16,12 +16,28 @@ router.post('/login',function(req,res){
 })
 
 router.post('/register',function(req,res){
-    var user = req.db.User
-    console.log(user({
-        username : req.body.username
-        ,password : req.body.password
-    }))
-    user.save()
+    var _uname = req.body.username
+        ,_pass = req.body.password
+    if(_uname === ''){
+        res.send('用户名不能为空')
+    }else if(_pass === ''){
+        res.send('密码不能为空')
+    }else{
+        var user = req.db.User({
+            username : req.body.username
+            ,password : req.body.password
+        })
+        user.save(function(err){
+            if(err){
+                res.send('用户名已经被占用')
+                return
+            }else{
+                res.send('注册成功')
+                //TODO：写入session
+            }
+        })
+    }
+
 
 })
 
