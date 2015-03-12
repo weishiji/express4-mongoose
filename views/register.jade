@@ -6,20 +6,24 @@ block content
     form.form-horizontal(onsubmit='return false;')
       .form-group.has-feedback
         .col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
-          input#login-user.form-control.border-line(type='text', placeholder='请输入邮箱/手机号')
+          input#login-user.form-control.border-line(type='text', placeholder='请输入邮箱')
           span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden='true')
       .form-group.has-feedback
         .col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
           input.form-control.border-line(type='text', placeholder='请输入密码')
           span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden='true')
+      .form-group.has-feedback
+        .col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
+          input.form-control.border-line(type='text', placeholder='确认密码')
+          span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden='true')
       .form-group
         .col-sm-12.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3
-          button.btn.btn-block.btn-primary.btn-lg(type='submit') 登陆
+          button.btn.btn-block.btn-primary.btn-lg(type='submit') 注册
     .text-center
-      p.text-muted 还没有账号？
-        a(href="/register") 立即注册
+      p.text-muted 已有账号？
+        a(href="/login") 马上登陆
 
 block footer
   footer.footer
     .container
-      p.text-muted.text-center 欢迎注册我们的网站
+      p.text-muted.text-center(style='margin:20px 0px;') 欢迎注册我们的网站
