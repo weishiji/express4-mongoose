@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -23,6 +24,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+    secret: '86b96d0856b5242a17e1de94929f1565'
+    ,resave: false
+    ,saveUninitialized: true
+    ,cookie: { secure: true }
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Make our bd accessible to our router
