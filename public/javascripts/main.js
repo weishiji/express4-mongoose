@@ -1,22 +1,14 @@
 $(function(){
-	$('button').on('click',function(){
-		/*$.ajax({
-			url : '/user'
-			,type : "POST"
-			,dataType : "JSON"
-			,data : {'name' : 'liu'+ Math.random(),'email' : 'lxg@gmail.com','password' : '123456'}
-		})
-		.done(function(dt){
-			console.log(dt)
-		})*/
+    $('#login-form').on('submit',function(){
+        var sendData = $(this).serializeObject()
+        console.log(sendData)
         $.ajax({
             url : '/api/login'
-            ,type : "POST"
-            ,'dataType' : "JSON"
-            ,data : {}
-        })
-        .done(function(dt){
+            ,type : 'POST'
+            ,dataType : "JSON"
+            ,data : sendData
+        }).done(function(dt){
             console.log(dt)
         })
-	})	
+    })
 })

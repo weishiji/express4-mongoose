@@ -6,6 +6,7 @@ var router = express.Router();
 
 /* api listing. */
 router.post('/login',function(req,res){
+    console.log(req.body.email)
     var user = new req.db.User({
         email : req.body.email || ''
         ,name : req.body.name || ''
