@@ -27,13 +27,14 @@ router.post('/register',function(req,res){
             username : req.body.username
             ,password : req.body.password
         })
-        user.save(function(err){
+        user.save(function(err,dt){
             if(err){
                 res.send('用户名已经被占用')
                 return
             }else{
                 res.send('注册成功')
-                //TODO：写入session
+                req.session.user_id = dt['_id']
+                console.log(req.session)
             }
         })
     }
