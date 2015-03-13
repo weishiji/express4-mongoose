@@ -6,7 +6,6 @@ router.get('/login',function(req,res,next){
     var user_id = req.session.user_id
     if(user_id){
         res.redirect('/')
-    }else{
     }
     res.render('login',{title : 'Login'})
 })
