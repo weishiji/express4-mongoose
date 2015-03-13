@@ -15,7 +15,7 @@ router.post('/login',function(req,res){
     res.send('success')
 })
 
-router.post('/register',function(req,res){
+router.post('/register',function(req,res,next){
     var _uname = req.body.username
         ,_pass = req.body.password
     if(_uname === ''){
@@ -35,6 +35,7 @@ router.post('/register',function(req,res){
                 res.send('注册成功')
                 req.session.user_id = dt['_id']
                 console.log(req.session)
+                next()
             }
         })
     }
