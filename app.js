@@ -24,12 +24,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(expressSession({
-    secret: '86b96d0856b5242a17e1de94929f1565'
-    ,resave: false
-    ,saveUninitialized: true
-    ,cookie: { secure: true }
-}));
+app.use(expressSession({secret: 'lxg', saveUninitialized: true, resave: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Make our bd accessible to our router
@@ -62,6 +57,24 @@ if (app.get('env') === 'development') {
     });
   });
 }
+
+// Session-persisted message middleware
+
+app.use(function(req, res, next){
+    var err = req.session.error,
+        msg = req.session.notice,
+        success = req.session.success;
+
+    delete req.session.error;
+    delete req.session.success;
+    delete req.session.notice;
+
+    if (err) res.locals.error = err;
+    if (msg) res.locals.notice = msg;
+    if (success) res.locals.success = success;
+
+    next();
+});
 
 // production error handler
 // no stacktraces leaked to user

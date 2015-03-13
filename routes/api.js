@@ -32,14 +32,12 @@ router.post('/register',function(req,res,next){
                 res.send('用户名已经被占用')
                 return
             }else{
-                res.send('注册成功')
                 req.session.user_id = dt['_id']
-                console.log(req.session)
-                next()
+
+                res.send('注册成功')
             }
         })
     }
-
 
 })
 

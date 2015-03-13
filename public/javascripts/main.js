@@ -13,7 +13,6 @@ $(function(){
     })
     $('#register-form').on('submit',function() {
         var sendData = $(this).serializeObject()
-        console.log(sendData)
         $.ajax({
             url: '/api/register'
             , type: 'POST'
