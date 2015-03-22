@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
+var request = require('request');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Make our bd accessible to our router
 app.use(function(req,res,next){
 	req.db = db;
+    req.request = request;
 	next();
 })
 
