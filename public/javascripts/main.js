@@ -22,4 +22,11 @@ $(function(){
             console.log(dt)
         })
     })
+	var socket = io();
+	$('#sio-btn').on('click',function(){
+		socket.emit('chat message','hello world');
+	})
+	socket.on('chat message',function(msg){
+		$('#sio-btn').after(msg)
+	})
 })

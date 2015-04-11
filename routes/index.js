@@ -4,7 +4,6 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     var sess = req.session;
     req.request.get('http://feixue.com/api/cs_category?with_child=1',function(err,response,body){
-        console.log(err)
         console.log(body)
         res.render('index', { title: 'Express' });
     })
