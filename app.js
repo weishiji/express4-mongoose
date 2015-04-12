@@ -7,11 +7,13 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var request = require('request');
 
+/*routes*/
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var api = require('./routes/api')
-
-var db = require('./server/config')
+/*ajax API*/
+var api = require('./routes/api');
+/*database db.js*/
+var db = require('./server/db')
 
 var app = express();
 
