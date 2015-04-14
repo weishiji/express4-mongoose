@@ -3,9 +3,10 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/login',function(req,res,next){
-    var user_id = req.session.user_id
+    var user_id = req.session.user_id;
     if(user_id){
         res.redirect('/')
+        return
     }
     res.render('login',{title : 'Login'})
 })
