@@ -2,6 +2,7 @@
    Created by lxg on 15-3-10.
 nav.navbar.navbar-default.navbar-fixed-top
   .container
+
     .navbar-header
       button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
         span.sr-only Toggle navigation
@@ -12,25 +13,33 @@ nav.navbar.navbar-default.navbar-fixed-top
     #navbar.collapse.navbar-collapse
       ul.nav.navbar-nav
         li.active
-          a(href='#') Home
+          a(href='/') Home
         li
           a(href='#about') About
         li
           a(href='#contact') Contact
-        li.dropdown
-          a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-            | Dropdown
-            span.caret
-          ul.dropdown-menu(role='menu')
-            li
-              a(href='#') Action
-            li
-              a(href='#') Another action
-            li
-              a(href='#') Something else here
-            li.divider
-            li.dropdown-header Nav header
-            li
-              a(href='#') Separated link
-            li
-              a(href='#') One more separated link
+
+      ul.nav.navbar-nav.navbar-right
+        if loginStatus
+          li.dropdown
+            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+              | 用户中心
+              span.caret
+            ul.dropdown-menu(role='menu')
+              li
+                a(href='#') Action
+              li
+                a(href='#') Another action
+              li
+                a(href='#') Something else here
+              li.divider
+              li.dropdown-header Nav header
+              li
+                a(href='#') Separated link
+              li
+                a(href='/users/logout') 退出登录
+        else
+          li
+            a(href='/users/login') Login
+          li
+            a(href='/users/register') Register
