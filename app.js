@@ -13,8 +13,6 @@ var users = require('./routes/users');
 /*ajax API*/
 var api = require('./routes/api');
 
-/*database db.js*/
-var db = require('./server/db')
 
 var app = express();
 
@@ -33,7 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Make our bd accessible to our router
 app.use(function(req,res,next){
-	req.db = db;
     req.request = request;
 	next();
 })

@@ -3,10 +3,11 @@
  */
 var express = require('express');
 var router = express.Router();
+var db = require('../server/db');
 
 /* api listing. */
 router.post('/login',function(req,res){
-    var user = req.db.User
+    var user = db.User
     user.find({'username' : req.body.username,'password' : req.body.password},function(err,dt){
         if(err) throw new Error(err)
         if(dt.length !== 0){
@@ -38,7 +39,7 @@ router.post('/register',function(req,res,next){
             ,message : '密码不能为空'
         })
     }else{
-        var user = req.db.User({
+        var user = db.User({
             username : req.body.username
             ,password : req.body.password
         })

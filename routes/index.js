@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var db = require('../server/db')
 /* GET home page. */
 router.get('/', function(req, res, next) {
     var sess = req.session;
@@ -8,21 +8,25 @@ router.get('/', function(req, res, next) {
         console.log(body)
         res.render('index', { title: 'Express' });
     })*/
-
-    var user = req.db.User
+    //user_id = 55029454b8c172431ba2e16f
+    var user = db.User;
+    var chatRoom = db.ChatRoom;
+    var resData = {
+        'title' : 'welcome to my website'
+        ,'loginStatus' : false
+    }
 	user.find({'_id' : sess.user_id},function(err,doc){
         if(doc.length !== 0){
-            res.render('index',{
-                title : doc[0].username
-                ,loginStatus : true
-            })
-        }else{
-            res.render('index',{
-                title : 'welcome'
-                ,loginStatus : false
-            })
+            resData.title = doc[0].username
+            resData.loginStatus = true
         }
-	})
+        chatRoom.find({},function(err,doc){
+            if(err) throw new Error(err);
+            resData.rooms = doc;
+            console.log(resData,'===================')
+            res.render('index',resData)
+        })
+	});
 
 });
 
