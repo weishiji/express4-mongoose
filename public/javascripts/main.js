@@ -10,7 +10,7 @@ $(function(){
             if(dt['status'] === 0){
                 window.location = '/'
             }else{
-                alert('账号或者密码错误')
+                alert(dt.message)
             }
         })
     })
@@ -22,7 +22,11 @@ $(function(){
             , dataType: "JSON"
             , data: sendData
         }).done(function (dt) {
-            console.log(dt)
+            if(dt['status'] === 0){
+                window.location = '/'
+            }else{
+                alert(dt.message)
+            }
         })
     })
 	var socket = io();
