@@ -12,6 +12,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 /*ajax API*/
 var api = require('./routes/api');
+
 /*database db.js*/
 var db = require('./server/db')
 
