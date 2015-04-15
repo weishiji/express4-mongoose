@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../server/db')
+var db = require('../server/db');
+var async = require('async');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     var sess = req.session;
@@ -8,25 +9,29 @@ router.get('/', function(req, res, next) {
         console.log(body)
         res.render('index', { title: 'Express' });
     })*/
-    //user_id = 55029454b8c172431ba2e16f
     var user = db.User;
     var chatRoom = db.ChatRoom;
     var resData = {
-        'title' : 'welcome to my website'
-        ,'loginStatus' : false
+        'title' : '首页'
+        ,'loginStatus' : sess.user_id ? true : false
     }
-	user.find({'_id' : sess.user_id},function(err,doc){
-        if(doc.length !== 0){
-            resData.title = doc[0].username
-            resData.loginStatus = true
+    async.parallel({
+        'user' : function(cb){
+            if(sess.user_id) user.find({'_id' : sess.user_id});
+            cb();
         }
-        chatRoom.find({},function(err,doc){
-            if(err) throw new Error(err);
-            resData.rooms = doc;
-            console.log(resData,'===================')
-            res.render('index',resData)
-        })
-	});
+        ,'rooms' : function(cb){
+            chatRoom.find({}).exec(cb)
+        }
+    },function(errs,results){
+        if(resData.loginStatus){
+            resData.title = results.user.username;
+            resData.user = results.user[0]
+        }
+        resData.rooms = results.rooms;
+
+        res.render('index',resData)
+    })
 
 });
 

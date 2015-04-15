@@ -2,6 +2,5 @@ extends layout
 
 block content
   div.container
-    h1= title
-    p Welcome to #{title}
-    button#sio-btn.btn.btn-danger click me
+    each val,index in rooms
+      p=val.name + '---' + val.owner_id + '---' + val._id
