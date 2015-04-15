@@ -2,5 +2,14 @@ extends layout
 
 block content
   div.container
-    each val,index in rooms
-      p=val.name + '---' + val.owner_id + '---' + val._id
+    div.row
+      each val,index in rooms
+        div.col-sm-6.col-md-4
+          div.thumbnail
+            img(src='',alt='#{val.name}')
+            div.caption
+              h3=val.name
+              p
+                button.btn.btn-primary 加入聊天室
+                if loginStatus && val.owner_id == user._id
+                  button.btn.btn-danger 删除聊天室

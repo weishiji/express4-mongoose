@@ -17,15 +17,18 @@ router.get('/', function(req, res, next) {
     }
     async.parallel({
         'user' : function(cb){
-            if(sess.user_id) user.find({'_id' : sess.user_id});
-            cb();
+            if(sess.user_id){
+                user.find({'_id' : sess.user_id}).exec(cb);
+            }else{
+                cb();
+            }
         }
         ,'rooms' : function(cb){
             chatRoom.find({}).exec(cb)
         }
     },function(errs,results){
         if(resData.loginStatus){
-            resData.title = results.user.username;
+            resData.title = results.user[0].username;
             resData.user = results.user[0]
         }
         resData.rooms = results.rooms;
