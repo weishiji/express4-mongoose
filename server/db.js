@@ -13,7 +13,8 @@ var _User = new Schema({
 },{collection:'user'})
 var _ChatRoom = new Schema({
     'owner_id' : {type : String, index : true}
-    ,'name' : {type : String}
+    ,'name' : {type : String,unique : true}
+    ,'owner_name' : {type : String}
 },{collection:'chat_room'})
 
 exports.User = mongoose.model('User',_User);

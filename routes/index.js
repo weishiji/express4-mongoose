@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
     async.parallel({
         'user' : function(cb){
             if(sess.user_id){
-                user.find({'_id' : sess.user_id}).exec(cb);
+                user.findOne({'_id' : sess.user_id}).exec(cb);
             }else{
                 cb();
             }
@@ -28,9 +28,11 @@ router.get('/', function(req, res, next) {
         }
     },function(errs,results){
         if(resData.loginStatus){
-            resData.title = results.user[0].username;
-            resData.user = results.user[0]
+            resData.title = results.user.username;
+            resData['user'] = results.user
+            resData['user']['password'] = null
         }
+        console.log(resData,'-----------------------')
         resData.rooms = results.rooms;
 
         res.render('index',resData)

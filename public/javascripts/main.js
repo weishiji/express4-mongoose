@@ -36,4 +36,20 @@ $(function(){
 	socket.on('chat message',function(msg){
 		$('#sio-btn').after(msg)
 	})
+
+    $('#create_room').on('click',function(){
+        var sendData = {
+            'name' : Math.random()+'ROOMS'
+            ,'owner_id' : APP.user._id
+            ,'owner_name' : APP.user.username
+        }
+        $.ajax({
+            url : '/api/create_room'
+            ,type : 'POST'
+            ,'dataType' : 'JSON'
+            ,data : sendData
+        }).done(function(dt){
+            console.log(dt)
+        })
+    })
 })
