@@ -38,10 +38,13 @@ $(function(){
 	})
 
     $('#create_room').on('click',function(){
+        if(!EM4.user){
+            window.location.href = '/users/login'
+        }
         var sendData = {
             'name' : Math.random()+'ROOMS'
-            ,'owner_id' : APP.user._id
-            ,'owner_name' : APP.user.username
+            ,'owner_id' : EM4.user._id
+            ,'owner_name' : EM4.user.username
         }
         $.ajax({
             url : '/api/create_room'

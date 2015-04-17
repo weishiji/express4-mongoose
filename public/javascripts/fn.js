@@ -2,8 +2,9 @@
  * Created by lxg on 15-3-12.
  * base javascript function
  * EM4 is the namespace
- */
-var EM4 = EM4 || {}
+* */
+var EM4 = window.EM4 || {};
+
 $.fn.serializeObject = function() {
     var o = {};
     var a = this.serializeArray();
