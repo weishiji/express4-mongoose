@@ -45,14 +45,13 @@ router.get('/', function(req, res, next) {
             sess.user_id = results.user['_id']
         }
         resData.rooms = results.rooms;
-        
+
         res.render('index/index',resData)
     })
 });
 
 router.get('/about',function(req,res,next){
     //var session = req.session
-    req.session.user_id = Math.random()
     cookieRequest(req,res,'http://localhost/test.php',function(err,response,body){
         res.render('index/about')
     })
