@@ -26,7 +26,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(expressSession({secret: 'lxg', saveUninitialized: true, resave: true}));
+app.use(expressSession({
+    secret: 'lxg'
+    , saveUninitialized: true
+    , resave: true
+    ,cookie : {
+        maxAge : 3600000
+    }
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Make our bd accessible to our router

@@ -5,10 +5,6 @@ var async = require('async');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     var sess = req.session;
-    /*req.request.get('http://feixue.com/api/cs_category?with_child=1',function(err,response,body){
-        console.log(body)
-        res.render('index', { title: 'Express' });
-    })*/
     var user = db.User;
     var chatRoom = db.ChatRoom;
     var resData = {
@@ -32,12 +28,19 @@ router.get('/', function(req, res, next) {
             resData['user'] = results.user
             resData['user']['password'] = null
         }
-        console.log(resData,'-----------------------')
         resData.rooms = results.rooms;
 
-        res.render('index',resData)
+        res.render('index/index',resData)
     })
-
 });
+router.get('/about',function(req,res,next){
+    var session = req.session
+    console.log(req.header('Cookie'),'cccccccccccccccccccccccccccccc')
+    req.request.get('http://localhost/test.php',function(err,response,body){
+        console.log(session,'-------------------------')
+        console.log(body,'++++++++++++++++++')
+        res.render('index/about')
+    })
+})
 
 module.exports = router;

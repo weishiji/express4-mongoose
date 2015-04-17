@@ -9,10 +9,10 @@ router.get('/login',function(req,res,next){
         res.redirect('/')
         return
     }
-    res.render('login',{title : 'Login'})
+    res.render('users/login',{title : 'Login'})
 });
 router.get('/register',function(req,res,next){
-    res.render('register',{title : 'Register'})
+    res.render('users/register',{title : 'Register'})
 });
 router.get('/logout',function(req,res,next){
     delete req.session.user_id;
